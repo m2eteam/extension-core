@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="M2E\Core\Model\Session\Adapter">
+        <arguments>
+            <argument name="session" xsi:type="object">Magento\Framework\Session\SessionManager\Proxy</argument>
+        </arguments>
+    </type>
+
+    <!-- Install -->
+
+    <type name="M2E\Core\Setup\InstallHandlerCollection">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="core" xsi:type="object">M2E\Core\Setup\InstallHandler\CoreHandler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--    -->
+</config>
