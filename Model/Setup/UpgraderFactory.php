@@ -20,14 +20,14 @@ class UpgraderFactory
 
     public function create(
         string $extensionName,
-        \M2E\Core\Model\Setup\AbstractUpdateCollection $updateCollection,
+        \M2E\Core\Model\Setup\AbstractUpgradeCollection $upgradeCollection,
         \Magento\Framework\Setup\SetupInterface $setup
     ): Upgrader {
         return $this->objectManager->create(
             Upgrader::class,
             [
                 'extensionName' => $extensionName,
-                'updateCollection' => $updateCollection,
+                'upgradeCollection' => $upgradeCollection,
                 'logger' => $this->loggerFactory->create(),
                 'setup' => $setup,
             ]

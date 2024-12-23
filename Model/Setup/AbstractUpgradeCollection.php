@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace M2E\Core\Model\Setup;
 
-abstract class AbstractUpdateCollection
+abstract class AbstractUpgradeCollection
 {
     /** @var \M2E\Core\Model\Setup\UpdateDefinition[] */
     private array $upgrades;
 
     public function findFromVersion(string $version): ?\M2E\Core\Model\Setup\UpdateDefinition
     {
+        $this->initUpgrades();
+
         return $this->upgrades[$version] ?? null;
     }
 
@@ -19,16 +21,20 @@ abstract class AbstractUpdateCollection
      */
     public function getAll(): array
     {
-        /** @psalm-suppress RedundantPropertyInitializationCheck */
-        if (!isset($this->upgrades)) {
-            $this->initUpgrades();
-        }
+        $this->initUpgrades();
 
         return $this->upgrades;
     }
 
     protected function initUpgrades(): void
     {
+        /** @psalm-suppress RedundantPropertyInitializationCheck */
+        if (isset($this->upgrades)) {
+            return;
+        }
+
+        $this->upgrades = [];
+
         foreach ($this->getSourceVersionUpgrades() as $fromVersion => $data) {
             if (isset($this->upgrades[$fromVersion])) {
                 throw new \M2E\Core\Model\Exception\Setup(

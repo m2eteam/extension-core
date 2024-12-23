@@ -15,12 +15,12 @@ class Upgrader
     private string $extensionIdentifier;
     /** @var \Magento\Framework\Setup\SetupInterface */
     private SetupInterface $setup;
-    /** @var \M2E\Core\Model\Setup\AbstractUpdateCollection */
-    private AbstractUpdateCollection $updateCollection;
+    /** @var \M2E\Core\Model\Setup\AbstractUpgradeCollection */
+    private AbstractUpgradeCollection $upgradeCollection;
 
     public function __construct(
         string $extensionName,
-        \M2E\Core\Model\Setup\AbstractUpdateCollection $updateCollection,
+        \M2E\Core\Model\Setup\AbstractUpgradeCollection $upgradeCollection,
         \Magento\Framework\Setup\SetupInterface $setup,
         \Psr\Log\LoggerInterface $logger,
         \M2E\Core\Model\Setup\Upgrade\ManagerFactory $managerFactory,
@@ -28,7 +28,7 @@ class Upgrader
         \Magento\Framework\Module\ModuleListInterface $moduleList
     ) {
         $this->extensionIdentifier = $extensionName;
-        $this->updateCollection = $updateCollection;
+        $this->upgradeCollection = $upgradeCollection;
         $this->setup = $setup;
         $this->logger = $logger;
         $this->moduleList = $moduleList;
@@ -101,14 +101,14 @@ class Upgrader
             }
         }
 
-        if (version_compare($versionFrom, $this->updateCollection->getMinAllowedVersion(), '<')) {
+        if (version_compare($versionFrom, $this->upgradeCollection->getMinAllowedVersion(), '<')) {
             throw new \M2E\Core\Model\Exception\Setup(sprintf('This version [%s] is too old.', $versionFrom));
         }
 
         $versions = [];
         $currentVersion = $this->getConfigVersion();
         while ($versionFrom !== $currentVersion) {
-            $updateDefinition = $this->updateCollection->findFromVersion($versionFrom);
+            $updateDefinition = $this->upgradeCollection->findFromVersion($versionFrom);
             if ($updateDefinition === null) {
                 break;
             }
@@ -130,7 +130,7 @@ class Upgrader
     {
         $maxCompletedItem = $this->setupRepository->findLastExecuted($this->extensionIdentifier);
         if ($maxCompletedItem === null) {
-            return $this->updateCollection->getMinAllowedVersion();
+            return $this->upgradeCollection->getMinAllowedVersion();
         }
 
         return $maxCompletedItem->getVersionTo();

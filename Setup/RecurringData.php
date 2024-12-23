@@ -20,8 +20,8 @@ class RecurringData implements InstallDataInterface
     /** @var \M2E\Core\Setup\InstallTablesListResolver */
     private InstallTablesListResolver $tablesList;
     private \M2E\Core\Model\Setup\UpgraderFactory $upgraderFactory;
-    /** @var \M2E\Core\Setup\UpdateCollection */
-    private UpdateCollection $updateCollection;
+    /** @var \M2E\Core\Setup\UpgradeCollection */
+    private UpgradeCollection $upgradeCollection;
 
     public function __construct(
         \Magento\Framework\App\ProductMetadataInterface $productMetadata,
@@ -30,7 +30,7 @@ class RecurringData implements InstallDataInterface
         InstallHandlerCollection $installHandlerCollection,
         InstallTablesListResolver $tablesList,
         \M2E\Core\Model\Setup\UpgraderFactory $upgraderFactory,
-        \M2E\Core\Setup\UpdateCollection $updateCollection
+        \M2E\Core\Setup\UpgradeCollection $upgradeCollection
     ) {
         $this->installChecker = $installChecker;
         $this->installerFactory = $installerFactory;
@@ -38,7 +38,7 @@ class RecurringData implements InstallDataInterface
         $this->installHandlerCollection = $installHandlerCollection;
         $this->tablesList = $tablesList;
         $this->upgraderFactory = $upgraderFactory;
-        $this->updateCollection = $updateCollection;
+        $this->upgradeCollection = $upgradeCollection;
     }
 
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context): void
@@ -61,7 +61,7 @@ class RecurringData implements InstallDataInterface
         $this->upgraderFactory
             ->create(
                 \M2E\Core\Helper\Module::IDENTIFIER,
-                $this->updateCollection,
+                $this->upgradeCollection,
                 $setup
             )
             ->upgrade();
