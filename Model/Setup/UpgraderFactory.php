@@ -21,8 +21,13 @@ class UpgraderFactory
     public function create(
         string $extensionName,
         \M2E\Core\Model\Setup\AbstractUpgradeCollection $upgradeCollection,
-        \Magento\Framework\Setup\SetupInterface $setup
+        \Magento\Framework\Setup\SetupInterface $setup,
+        \M2E\Core\Model\Module\MaintenanceInterface $maintenance = null
     ): Upgrader {
+        if ($maintenance === null) {
+            $maintenance = new \M2E\Core\Model\Module\Maintenance\Stub();
+        }
+
         return $this->objectManager->create(
             Upgrader::class,
             [
@@ -30,6 +35,7 @@ class UpgraderFactory
                 'upgradeCollection' => $upgradeCollection,
                 'logger' => $this->loggerFactory->create(),
                 'setup' => $setup,
+                'maintenance' => $maintenance,
             ]
         );
     }

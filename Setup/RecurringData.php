@@ -22,8 +22,10 @@ class RecurringData implements InstallDataInterface
     private \M2E\Core\Model\Setup\UpgraderFactory $upgraderFactory;
     /** @var \M2E\Core\Setup\UpgradeCollection */
     private UpgradeCollection $upgradeCollection;
+    private \M2E\Core\Model\Module\Maintenance $maintenance;
 
     public function __construct(
+        \M2E\Core\Model\Module\Maintenance $maintenance,
         \Magento\Framework\App\ProductMetadataInterface $productMetadata,
         \M2E\Core\Model\Setup\InstallChecker $installChecker,
         \M2E\Core\Model\Setup\InstallerFactory $installerFactory,
@@ -39,6 +41,7 @@ class RecurringData implements InstallDataInterface
         $this->tablesList = $tablesList;
         $this->upgraderFactory = $upgraderFactory;
         $this->upgradeCollection = $upgradeCollection;
+        $this->maintenance = $maintenance;
     }
 
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context): void
@@ -51,7 +54,8 @@ class RecurringData implements InstallDataInterface
                     \M2E\Core\Helper\Module::IDENTIFIER,
                     $this->installHandlerCollection,
                     $this->tablesList,
-                    $setup
+                    $setup,
+                    $this->maintenance
                 )
                 ->install();
 
@@ -62,7 +66,8 @@ class RecurringData implements InstallDataInterface
             ->create(
                 \M2E\Core\Helper\Module::IDENTIFIER,
                 $this->upgradeCollection,
-                $setup
+                $setup,
+                $this->maintenance
             )
             ->upgrade();
     }
@@ -70,6 +75,8 @@ class RecurringData implements InstallDataInterface
     private function checkMagentoVersion(string $magentoVersion): void
     {
         if (!version_compare($magentoVersion, self::MINIMUM_REQUIRED_MAGENTO_VERSION, '>=')) {
+            $this->maintenance->enableDueLowMagentoVersion();
+
             $message = sprintf(
                 'Magento version %s is not compatible with M2E Extension.',
                 $magentoVersion,

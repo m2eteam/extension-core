@@ -27,8 +27,13 @@ class InstallerFactory
         string $extensionName,
         \M2E\Core\Model\Setup\AbstractInstallHandlerCollection $installHandlersCollection,
         \M2E\Core\Model\Setup\InstallTablesListResolverInterface $tablesList,
-        \Magento\Framework\Setup\SetupInterface $setup
+        \Magento\Framework\Setup\SetupInterface $setup,
+        \M2E\Core\Model\Module\MaintenanceInterface $maintenance = null
     ): Installer {
+        if ($maintenance === null) {
+            $maintenance = new \M2E\Core\Model\Module\Maintenance\Stub();
+        }
+
         return $this->objectManager->create(
             Installer::class,
             [
@@ -36,7 +41,8 @@ class InstallerFactory
                 'installHandlersCollection' => $installHandlersCollection,
                 'installTablesListResolver' => $tablesList,
                 'logger' => $this->loggerFactory->create(),
-                'setup' => $setup
+                'setup' => $setup,
+                'maintenance' => $maintenance,
             ]
         );
     }

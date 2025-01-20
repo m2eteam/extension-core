@@ -31,6 +31,7 @@ class Magento
     private \Magento\Framework\Composer\ComposerInformation $composerInformation;
     private \Magento\Framework\App\RequestInterface $request;
     private \Magento\Framework\App\State $appState;
+    private \Magento\Framework\ObjectManagerInterface $objectManager;
     /**
      * @psalm-suppress UndefinedClass
      * @var \Magento\Cron\Model\ScheduleFactory
@@ -62,7 +63,8 @@ class Magento
         \Magento\Framework\App\State $appState,
         \Magento\Cron\Model\ScheduleFactory $cronScheduleFactory,
         \Magento\Directory\Model\CountryFactory $countryFactory,
-        \Magento\Framework\App\View\Deployment\Version\Storage\File $deploymentVersionStorageFile
+        \Magento\Framework\App\View\Deployment\Version\Storage\File $deploymentVersionStorageFile,
+        \Magento\Framework\ObjectManagerInterface $objectManager
     ) {
         $this->resource = $resource;
         $this->deploymentConfig = $deploymentConfig;
@@ -80,6 +82,7 @@ class Magento
         $this->cronScheduleFactory = $cronScheduleFactory;
         $this->countryFactory = $countryFactory;
         $this->deploymentVersionStorageFile = $deploymentVersionStorageFile;
+        $this->objectManager = $objectManager;
     }
 
     // ----------------------------------------
@@ -319,5 +322,38 @@ class Magento
         }
 
         return $deployedTimeStamp ? gmdate('Y-m-d H:i:s', (int)$deployedTimeStamp) : false;
+    }
+
+    public function getAllEventObservers(): array
+    {
+        $eventObservers = [];
+
+        /** @var \Magento\Framework\Config\ScopeInterface $scope */
+        $scope = $this->objectManager->get(\Magento\Framework\Config\ScopeInterface::class);
+
+        foreach ($this->getAreas() as $area) {
+            $scope->setCurrentScope($area);
+
+            $eventsData = $this->objectManager->create(
+                \Magento\Framework\Event\Config\Data::class,
+                ['configScope' => $scope]
+            );
+
+            foreach ($eventsData->get(null) as $eventName => $eventData) {
+                foreach ($eventData as $observerName => $observerData) {
+                    $observerName = '#class#::#method#';
+
+                    if (!empty($observerData['instance'])) {
+                        $observerName = str_replace('#class#', $observerData['instance'], $observerName);
+                    }
+
+                    $observerMethod = !empty($observerData['method']) ? $observerData['method'] : 'execute';
+                    $observerName = str_replace('#method#', $observerMethod, $observerName);
+                    $eventObservers[$area][$eventName][] = $observerName;
+                }
+            }
+        }
+
+        return $eventObservers;
     }
 }

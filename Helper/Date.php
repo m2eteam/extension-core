@@ -16,6 +16,13 @@ class Date
         return self::createDateGmt('now');
     }
 
+    public static function createImmutableCurrentGmt(): \DateTimeImmutable
+    {
+        return self::createImmutableDateGmt('now');
+    }
+
+    // ----------------------------------------
+
     public static function createDateGmt(?string $date): \DateTime
     {
         // for backward compatibility
@@ -25,6 +32,31 @@ class Date
 
         return new \DateTime($date, new \DateTimeZone(self::getTimezone()->getDefaultTimezone()));
     }
+
+    public static function tryCreateDateGmt(?string $date): ?\DateTime
+    {
+        if ($date === null) {
+            return null;
+        }
+
+        return self::createDateGmt($date);
+    }
+
+    public static function createImmutableDateGmt(string $date): \DateTimeImmutable
+    {
+        return \DateTimeImmutable::createFromMutable(self::createDateGmt($date));
+    }
+
+    public static function tryCreateImmutableDateGmt(?string $date): ?\DateTimeImmutable
+    {
+        if ($date === null) {
+            return null;
+        }
+
+        return self::createImmutableDateGmt($date);
+    }
+
+    // ----------------------------------------
 
     public static function createCurrentInCurrentZone(): \DateTime
     {

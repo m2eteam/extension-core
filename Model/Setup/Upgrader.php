@@ -17,9 +17,11 @@ class Upgrader
     private SetupInterface $setup;
     /** @var \M2E\Core\Model\Setup\AbstractUpgradeCollection */
     private AbstractUpgradeCollection $upgradeCollection;
+    private \M2E\Core\Model\Module\MaintenanceInterface $maintenance;
 
     public function __construct(
         string $extensionName,
+        \M2E\Core\Model\Module\MaintenanceInterface $maintenance,
         \M2E\Core\Model\Setup\AbstractUpgradeCollection $upgradeCollection,
         \Magento\Framework\Setup\SetupInterface $setup,
         \Psr\Log\LoggerInterface $logger,
@@ -34,10 +36,12 @@ class Upgrader
         $this->moduleList = $moduleList;
         $this->managerFactory = $managerFactory;
         $this->setupRepository = $setupRepository;
+        $this->maintenance = $maintenance;
     }
 
     public function upgrade(): void
     {
+        $this->maintenance->enable();
         $this->setup->startSetup();
 
         try {
@@ -80,6 +84,7 @@ class Upgrader
             return;
         }
 
+        $this->maintenance->disable();
         $this->setup->endSetup();
     }
 

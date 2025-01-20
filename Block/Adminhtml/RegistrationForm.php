@@ -6,9 +6,6 @@ namespace M2E\Core\Block\Adminhtml;
 
 class RegistrationForm extends \Magento\Backend\Block\Widget\Form\Generic
 {
-    private const WEBSITE_PRIVACY_URL = 'https://m2epro.com/privacy';
-    private const WEBSITE_TERMS_URL = 'https://m2epro.com/terms-and-conditions';
-
     private \M2E\Core\Helper\Magento\Country $countryHelper;
     private \M2E\Core\Helper\Magento\Admin $magentoAdminHelper;
     private \M2E\Core\Model\RegistrationService $registrationService;
@@ -138,8 +135,8 @@ class RegistrationForm extends \Magento\Backend\Block\Widget\Form\Generic
             ]
         );
 
-        $privacyUrl = self::WEBSITE_PRIVACY_URL;
-        $termsUrl = self::WEBSITE_TERMS_URL;
+        $privacyUrl = \M2E\Core\Helper\Module\Support::WEBSITE_PRIVACY_URL;
+        $termsUrl = \M2E\Core\Helper\Module\Support::WEBSITE_TERMS_URL;
 
         $fieldset->addField(
             'licence_agreement',

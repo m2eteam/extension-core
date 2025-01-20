@@ -20,9 +20,11 @@ class Installer
     private \Magento\Framework\Module\ModuleListInterface $moduleList;
     /** @var \M2E\Core\Model\Setup\InstallTablesListResolverInterface */
     private InstallTablesListResolverInterface $installTablesListResolver;
+    private \M2E\Core\Model\Module\MaintenanceInterface $maintenance;
 
     public function __construct(
         string $extensionName,
+        \M2E\Core\Model\Module\MaintenanceInterface $maintenance,
         \M2E\Core\Model\Setup\AbstractInstallHandlerCollection $installHandlersCollection,
         \M2E\Core\Model\Setup\InstallTablesListResolverInterface $installTablesListResolver,
         \Psr\Log\LoggerInterface $logger,
@@ -37,10 +39,12 @@ class Installer
         $this->logger = $logger;
         $this->setup = $setup;
         $this->installTablesListResolver = $installTablesListResolver;
+        $this->maintenance = $maintenance;
     }
 
     public function install(): void
     {
+        $this->maintenance->enable();
         $this->setup->startSetup();
 
         try {
@@ -71,6 +75,7 @@ class Installer
         $setupObject->markAsCompleted();
         $this->setupRepository->save($setupObject);
 
+        $this->maintenance->disable();
         $this->setup->endSetup();
     }
 

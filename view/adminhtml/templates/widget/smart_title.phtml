@@ -1,0 +1,30 @@
+<?php
+/** @var $block \M2E\Core\Block\Adminhtml\Widget\SmartTitle */
+/** @var $escaper \Magento\Framework\Escaper */
+?>
+<?php
+$titleIdHtml = ($block->getTitleId()) ? ' id="' . $escaper->escapeHtmlAttr($block->getTitleId()) . '"' : '';
+$titleClass = ($block->getTitleClass()) ? ' ' . $block->getTitleClass() : '';
+$dropdownClassHtml = $block->hasMore() ? ' class="smart-title-items-dropdown-wrapper"' : '';
+?>
+<div class="page-title-wrapper<?= $escaper->escapeHtmlAttr($titleClass) ?>"
+     data-mage-init='{"M2E_Core/js/Widget/SmartTitle":{}}'>
+    <h1 class="page-title"<?= /* @noEscape */ $titleIdHtml ?>>
+        <?= $escaper->escapeHtml($block->getTitlePrefix()) ?>
+        <span <?= /* @noEscape */ $dropdownClassHtml ?>>
+            "<?= $escaper->escapeHtml($block->getCurrentTitleItem()->getTitle()) ?>"
+            <?php if ($block->hasMore()) { ?>
+                <span class="smart-title-dropdown-menu">
+                    <?php foreach ($block->getTitleItems() as $item) { ?>
+                        <span class="smart-title-dropdown-item"
+                              data-url="<?= $escaper->escapeUrl($block->getItemUrl($item)) ?>">
+                            <?= $escaper->escapeHtml($item->getTitle()); ?>
+                        </span>
+                    <?php } ?>
+                </span>
+            <?php } ?>
+        </span>
+    </h1>
+
+    <?= $block->getChildHtml() ?>
+</div>
