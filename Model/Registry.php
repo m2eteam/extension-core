@@ -39,7 +39,7 @@ class Registry extends \M2E\Core\Model\ActiveRecord\AbstractModel
         return $this->setData(ResourceRegistry::COLUMN_VALUE, $value);
     }
 
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->getData(ResourceRegistry::COLUMN_VALUE);
     }
