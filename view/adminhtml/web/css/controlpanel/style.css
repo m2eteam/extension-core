@@ -1,0 +1,201 @@
+/* Base style */
+table.form-list td.label {
+    width: 275px;
+}
+
+table.form-list .label {
+    vertical-align: baseline;
+}
+
+table.form-list tr {
+    line-height: 35px;
+}
+
+.col-m-6:nth-child(even) {
+    padding-left: 5px;
+}
+
+.col-m-6:nth-child(odd) {
+    padding-right: 5px;
+}
+
+.col-m-4:nth-child(even) {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.col-m-4:nth-child(odd) {
+    padding-right: 5px;
+}
+
+.debug-test-commands {
+    margin-bottom: 10px;
+}
+
+.debug-mode-switcher {
+    width: 500px;
+    background-color: #f8f8f8 !important;
+    border-top: 1px solid #e3e3e3 !important;
+    border-bottom: 1px solid #e3e3e3 !important;
+    font-size: 1.3rem;
+    padding: 1.5rem 2.5rem;
+    margin-bottom: 20px;
+}
+/* ================================================ */
+/* Buttons */
+/* ================================================ */
+.page-actions-buttons .action-warning {
+    background-color: #fddaad !important;
+}
+
+.page-actions-buttons .action-success {
+    background-color: #efffcc !important;
+}
+
+.page-actions-buttons .action-error {
+    background-color: #ffcccc !important;
+}
+
+/* Blocks Headers */
+/* ================================================ */
+.controlPanel__block_container {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.controlPanel__block_container .fieldset-wrapper-title {
+    background-color: #f8f8f8;
+    padding-bottom: 0;
+    padding-left: 10px;
+}
+
+.controlPanel__block_container .fieldset-wrapper-title > h4 {
+    margin-bottom: 12px;
+}
+
+.controlPanel__block_container .fieldset-wrapper-content {
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+
+/* Reflection Blocks */
+/* ================================================ */
+.controlPanel-reflection-container tr {
+    height: 15px;
+}
+
+.controlPanel-reflection-container tr td hr {
+    width: 400px;
+    margin-top: 8px;
+}
+
+.controlPanel-reflection-container tr td.group_number_td {
+    width: 20px;
+}
+
+.controlPanel-reflection-container tr td.group_separator {
+    width: 15px;
+}
+
+/* ================================================ */
+table td a {
+    text-decoration: none !important;
+}
+
+
+/* Tooltip to the right */
+.M2E-field-tooltip-to-right.admin__field-tooltip {
+    position: absolute;
+}
+
+.M2E-field-tooltip-to-right .admin__field-tooltip-content {
+    margin-top: 5px;
+    left: 70px;
+    position: relative;
+}
+
+.M2E-field-tooltip-to-right.admin__field-tooltip .admin__field-tooltip-content:after,
+.M2E-field-tooltip-to-right.admin__field-tooltip .admin__field-tooltip-content:before {
+    left: -32px;
+    right: 0;
+    top: 10px;
+    border-right-color: #afadac;
+    border-top-color: transparent;
+}
+
+.M2E-field-tooltip-to-right.admin__field-tooltip .admin__field-tooltip-content:after {
+    border-right-color: #fffbbb;
+    border-top-color: transparent;
+    top: 11px;
+    width: 33px;
+}
+.M2E-field-tooltip-to-right .admin__field-tooltip-action {
+    margin-left: 2rem;
+}
+/* ------------------- */
+
+/* Cron tab */
+.control_panel_cron_tab.group_container_summary {
+    background: #fff;
+    border: 1px solid #d6d6d6;
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.control_panel_cron_tab .control_panel_head_container h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #d6d6d6;
+    padding-bottom: 5px;
+}
+
+.control_panel_cron_tab .form-list {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.control_panel_cron_tab .form-list td.label {
+    font-weight: 600;
+    padding: 10px;
+    vertical-align: middle;
+    color: #4d4d4d;
+}
+
+.control_panel_cron_tab .form-list td.value {
+    padding: 10px;
+}
+
+.control_panel_cron_tab #task_code {
+    width: 100%;
+    max-width: 400px;
+    padding: 7px;
+    border: 1px solid #c2c2c2;
+    border-radius: 3px;
+    background: #fff;
+    font-size: 14px;
+    color: #333;
+}
+
+.control_panel_cron_tab .action-default.scalable.add {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #eb5202;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.3s;
+    margin-left: 10px;
+    border: none;
+}
+
+.control_panel_cron_tab .action-default.scalable.add:hover {
+    background: #c04102;
+}
+/* ------------------- */

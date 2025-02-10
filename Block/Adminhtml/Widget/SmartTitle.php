@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace M2E\Core\Block\Adminhtml\Widget;
 
-class SmartTitle extends \Magento\Theme\Block\Html\Title
+class SmartTitle extends \Magento\Theme\Block\Html\Title implements SmartTitleInterface
 {
     private \M2E\Core\Model\Ui\Widget\SmartTitle\DataProviderInterface $dataProvider;
     private \M2E\Core\Model\Ui\Widget\SmartTitle\UrlBuilderInterface $urlBuilder;

@@ -1,0 +1,33 @@
+<?php
+/** @var \M2E\Core\Block\Adminhtml\ControlPanel\Widget\Location $block */
+?>
+<?php
+?>
+<div class="fieldset-wrapper" id="magento_block_control_panel_info_location">
+    <div class="fieldset-wrapper-title admin__fieldset-wrapper-title">
+        <h4><?= $block->getWidgetTitle(); ?></h4>
+    </div>
+    <div class="fieldset-wrapper-content admin__fieldset-wrapper-content">
+        <div class="hor-scroll">
+            <table class="form-list" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="label">
+                        <label><?= __('Directory [root]'); ?>: </label>
+                    </td>
+                    <td class="value">
+                        <?= $block->getBaseDirectory(); ?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label">
+                        <label><?= __('Directory [m2e]'); ?>: </label>
+                    </td>
+                    <td class="value">
+                        <?= $block->getRelativeDirectory(); ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

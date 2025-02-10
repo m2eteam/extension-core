@@ -30,6 +30,10 @@ class UpgradeCollection extends \M2E\Core\Model\Setup\AbstractUpgradeCollection
                 'to' => '1.1.1',
                 'upgrade' => null,
             ],
+            '1.1.1' => [
+                'to' => '1.2.0',
+                'upgrade' => null,
+            ],
         ];
     }
 }

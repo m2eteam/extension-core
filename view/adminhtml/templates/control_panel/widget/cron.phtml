@@ -1,0 +1,95 @@
+<?php
+/** @var \M2E\Core\Block\Adminhtml\ControlPanel\Widget\Cron $block */
+
+?>
+<div class="fieldset-wrapper" id="magento_block_control_panel_info_cron">
+    <div class="fieldset-wrapper-title admin__fieldset-wrapper-title">
+        <h4><?= $block->getWidgetTitle(); ?></h4>
+    </div>
+    <div class="fieldset-wrapper-content admin__fieldset-wrapper-content">
+        <div class="hor-scroll">
+            <table class="form-list" cellspacing="0" cellpadding="0">
+
+                <tr>
+                    <td class='label'>
+                        <label>Type: </label>
+                    </td>
+                    <td class="value">
+                        <?= $block->getRunnerType() ?>
+                    </td>
+                </tr>
+
+                <?php
+                if ($block->isRunnerTypeService()): ?>
+                    <tr>
+                        <td class="label">
+                            <label>Service Auth Key: </label>
+                        </td>
+                        <td class="value">
+                            <?= $block->getServiceAuthKey(); ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+
+                <tr>
+                    <td class="label">
+                        <label>Last Run: </label>
+                    </td>
+                    <?php
+                    $style = '';
+                    if ($block->isCronNotWorking()) {
+                        $style = ' style="color: red"';
+                    }
+                    ?>
+                    <td class="value">
+                        <span<?= $style ?>><?= $block->getCronLastRunTime() ?></span>
+                        <?php
+                        if ($block->isCronNotWorking()) : ?>
+                            &nbsp;<a href="https://help.m2epro.com/support/solutions/articles/9000200879"
+                                     target="_blank">[read more]</a>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+
+                <?php
+                if ($block->isControllerCronDisabled()) : ?>
+                    <tr>
+                        <td class="label">
+                            <label>Service Controller Cron State: </label>
+                        </td>
+                        <td class="value" style="color: red;">
+                            Disabled by Developer
+                        </td>
+                    </tr>
+                <?php
+                endif; ?>
+
+                <?php
+                if ($block->isPubCronDisabled()) : ?>
+                    <tr>
+                        <td class="label">
+                            <label>Service Pub Cron State: </label>
+                        </td>
+                        <td class="value" style="color: red;">
+                            Disabled by Developer
+                        </td>
+                    </tr>
+                <?php
+                endif; ?>
+
+                <?php
+                if ($block->isMagentoCronDisabled()) : ?>
+                    <tr>
+                        <td class="label">
+                            <label>Magento Cron State: </label>
+                        </td>
+                        <td class="value" style="color: red;">
+                            Disabled by Developer
+                        </td>
+                    </tr>
+                <?php
+                endif; ?>
+            </table>
+        </div>
+    </div>
+</div>

@@ -2,28 +2,26 @@ define(['jquery'], function ($) {
     'use strict';
 
     return function (config, element) {
-        const dropdown = element.querySelector('.smart-title-items-dropdown-wrapper');
-        const dropdownItems = element.querySelectorAll('.smart-title-dropdown-item');
+        const activeItem = element.querySelector('.smart-title-active-item');
 
-        if (dropdown) {
-            dropdown.addEventListener('click', function () {
-                this.classList.toggle('open');
+        if (activeItem) {
+            const dropdownMenu = element.querySelector('.smart-title-dropdown-menu');
+            if (dropdownMenu) {
+                const activeRect = activeItem.getBoundingClientRect();
+                const wrapperRect = element.getBoundingClientRect();
+                dropdownMenu.style.left = activeRect.left - wrapperRect.left + `px`;
+                dropdownMenu.style.minWidth = activeRect.width + `px`;
+            }
+
+            activeItem.addEventListener('click', function () {
+                element.classList.toggle('open');
             });
 
             document.addEventListener('click', function (event) {
-                if (!dropdown.contains(event.target)) {
-                    dropdown.classList.remove('open');
+                if (!activeItem.contains(event.target)) {
+                    element.classList.remove('open');
                 }
             });
         }
-
-        dropdownItems.forEach(function (item) {
-            item.addEventListener('click', function () {
-                const url = this.getAttribute('data-url');
-                if (url) {
-                    window.location.href = url;
-                }
-            });
-        });
     };
 });

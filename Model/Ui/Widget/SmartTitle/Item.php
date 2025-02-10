@@ -8,11 +8,13 @@ class Item
 {
     private int $id;
     private string $title;
+    private ?string $code;
 
-    public function __construct(int $id, string $title)
+    public function __construct(int $id, string $title, string $code = null)
     {
         $this->id = $id;
         $this->title = $title;
+        $this->code = $code;
     }
 
     public function getId(): int
@@ -23,5 +25,10 @@ class Item
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
     }
 }

@@ -1,0 +1,30 @@
+<?php
+/** @var \M2E\Core\Block\Adminhtml\ControlPanel\Tab\Overview $block */
+?>
+<style>
+    .fieldset-wrapper .form-list {
+        font-size: 13px;
+    }
+
+    .fieldset-wrapper td.label {
+        width: 220px !important;
+    }
+</style>
+
+<div class="col-m-4 controlPanel__block_container">
+    <?php foreach ($block->getColumnWidgets(\M2E\Core\Model\ControlPanel\OverviewWidget::FIRST_COLUMN) as $widget) {
+        echo $widget->toHtml();
+    } ?>
+</div>
+
+<div class="col-m-4 controlPanel__block_container">
+    <?php foreach ($block->getColumnWidgets(\M2E\Core\Model\ControlPanel\OverviewWidget::SECOND_COLUMN) as $widget) {
+        echo $widget->toHtml();
+    } ?>
+</div>
+
+<div class="col-m-4 controlPanel__block_container">
+    <?php foreach ($block->getColumnWidgets(\M2E\Core\Model\ControlPanel\OverviewWidget::THIRD_COLUMN) as $widget) {
+        echo $widget->toHtml();
+    } ?>
+</div>

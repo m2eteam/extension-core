@@ -78,6 +78,13 @@ class Structure
         return $this->tablesStatus[$tableName] = $result;
     }
 
+    public function isIdColumnAutoIncrement(string $table, string $idColumn): bool
+    {
+        $columnInfo = $this->getColumnInfo($table, $idColumn);
+
+        return isset($columnInfo['extra']) && strpos($columnInfo['extra'], 'increment') !== false;
+    }
+
     public function getTableInfo(string $tableName): ?array
     {
         if (array_key_exists($tableName, $this->tablesInfo)) {

@@ -1,0 +1,21 @@
+<?php
+/** @var \M2E\Core\Block\Adminhtml\ControlPanel\Tab\ModuleTools\Tab\Commands $block */
+?>
+
+<?php foreach ($block->getCommands() as $index => $command) : ?>
+    <table class="controlPanel-reflection-container">
+        <tr>
+            <td class="group_number_td"><b><?= $index + 1; ?>.</b></td>
+            <td class="group_separator">|</td>
+            <td><?= $block->getCommandLauncherHtml($command); ?></td>
+        </tr>
+
+        <?php if ($command['new_line']) : ?>
+            <tr>
+                <td colspan="3">
+                    <hr/>
+                </td>
+            </tr>
+        <?php endif; ?>
+    </table>
+<?php endforeach; ?>

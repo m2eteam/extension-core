@@ -1,0 +1,45 @@
+<?php
+/** @var \M2E\Core\Block\Adminhtml\ControlPanel\Widget\VersionInfo $block */
+?>
+<div class="fieldset-wrapper" id="magento_block_control_panel_info_cron">
+    <div class="fieldset-wrapper-title admin__fieldset-wrapper-title">
+        <h4><?= $block->getWidgetTitle(); ?></h4>
+    </div>
+    <div class="fieldset-wrapper-content admin__fieldset-wrapper-content">
+        <div class="hor-scroll">
+            <table class="form-list" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="label">
+                        <label><?= __('Latest Version'); ?>: </label>
+                    </td>
+                    <td class="value">
+                        <?php if ($block->getLatestPublicVersion()) : ?>
+                            <?= $block->getLatestPublicVersion(); ?>
+                            <a href="https://docs-m2.m2epro.com/" target="_blank">
+                                <?= __('[release notes]'); ?>
+                            </a>
+                        <?php else : ?>
+                            --
+                        <?php endif; ?>
+                    </td>
+                </tr>
+
+                <?php if (!$block->getData('is_support_mode')) : ?>
+                    <tr>
+                        <td class="label">
+                            <label><?= __('History'); ?>: </label>
+                        </td>
+                        <td class="value">
+                            <?php
+                            $url = $block->getUrl(
+                                '*/controlPanel_database/manageTable',
+                                ['table' => \M2E\Core\Helper\Module\Database\Tables::TABLE_NAME_SETUP]
+                            ); ?>
+                            <a target="_blank" href="<?= $url; ?>"><?= __('show'); ?></a>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            </table>
+        </div>
+    </div>
+</div>

@@ -55,4 +55,11 @@ class Tables
 
         return false;
     }
+
+    // ----------------------------------------
+
+    public static function isOperationHistoryTable(string $tableName): bool
+    {
+        return strpos($tableName, 'operation_history') !== false;
+    }
 }
