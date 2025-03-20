@@ -9,4 +9,38 @@
         </arguments>
     </type>
 
+    <!-- ControlPanel -->
+
+    <type name="M2E\Core\Model\ControlPanel\ExtensionCollection">
+        <arguments>
+            <argument name="extensions" xsi:type="array">
+                <item name="m2e_core" xsi:type="object">M2E\Core\Model\ControlPanel\CoreExtension\Extension</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="M2E\Core\Model\ControlPanel\TabCollection">
+        <arguments>
+            <argument name="providers" xsi:type="array">
+                <item name="m2e_core" xsi:type="object">M2E\Core\Model\ControlPanel\CoreExtension\TabProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="M2E\Core\Model\ControlPanel\OverviewWidgetCollection">
+        <arguments>
+            <argument name="widgetProviders" xsi:type="array">
+                <item name="m2e_core" xsi:type="object">M2E\Core\Model\ControlPanel\CoreExtension\OverviewWidgetProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="M2E\Core\Model\ControlPanel\DatabaseRegistryCollection">
+        <arguments>
+            <argument name="registry" xsi:type="array">
+                <item name="m2e_core" xsi:type="object">M2E\Core\Model\ControlPanel\CoreExtension\DatabaseRegistry</item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>

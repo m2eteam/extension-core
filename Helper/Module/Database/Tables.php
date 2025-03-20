@@ -62,4 +62,53 @@ class Tables
     {
         return strpos($tableName, 'operation_history') !== false;
     }
+
+    // ----------------------------------------
+
+    /**
+     * @return string[]
+     */
+    public static function getAllTables(): array
+    {
+        return array_keys(self::getTablesResourcesModels());
+    }
+
+    public static function getTableResourceModel(string $tableName): string
+    {
+        $tablesModels = self::getTablesResourcesModels();
+
+        return $tablesModels[$tableName];
+    }
+
+    private static function getTablesResourcesModels(): array
+    {
+        return [
+            self::TABLE_NAME_SETUP => \M2E\Core\Model\ResourceModel\Setup::class,
+            self::TABLE_NAME_CONFIG => \M2E\Core\Model\ResourceModel\Config::class,
+            self::TABLE_NAME_REGISTRY => \M2E\Core\Model\ResourceModel\Registry::class,
+        ];
+    }
+
+    public static function getTableModel(string $tableName): string
+    {
+        $tablesModels = self::getTablesModels();
+
+        return $tablesModels[$tableName];
+    }
+
+    public static function getTablesModels(): array
+    {
+        return [
+            self::TABLE_NAME_SETUP => \M2E\Core\Model\Setup::class,
+            self::TABLE_NAME_CONFIG => \M2E\Core\Model\Config::class,
+            self::TABLE_NAME_REGISTRY => \M2E\Core\Model\Registry::class,
+        ];
+    }
+
+    // ----------------------------------------
+
+    public static function isModuleTable(string $tableName): bool
+    {
+        return strpos($tableName, self::PREFIX) !== false;
+    }
 }
