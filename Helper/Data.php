@@ -92,7 +92,7 @@ class Data
         } else {
             // process single item
             if ($data !== '') {
-                $result = htmlspecialchars_decode($data, $flags);
+                $result = htmlspecialchars_decode((string)$data, $flags);
             } else {
                 $result = $data;
             }

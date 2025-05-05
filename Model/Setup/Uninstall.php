@@ -56,6 +56,14 @@ class Uninstall
                 $this->setup->getTable('core_config_data'),
                 ['path LIKE ?' => rtrim($this->magentoCoreConfigSettings->getConfigKeyPrefix(), '/') . '/%'],
             );
+
+            // Delete from Core tables
+            foreach (\M2E\Core\Helper\Module\Database\GeneralTables::getAllTables() as $table) {
+                $this->setup->getConnection()->delete(
+                    $this->setup->getTable($table),
+                    ['extension_name = ?' => $this->extensionName]
+                );
+            }
             // -----------------------
         } catch (\Throwable $exception) {
             $this->logger->error(

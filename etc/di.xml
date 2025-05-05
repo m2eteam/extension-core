@@ -15,6 +15,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="core" xsi:type="object">M2E\Core\Setup\InstallHandler\CoreHandler</item>
+                <item name="product" xsi:type="object">M2E\Core\Setup\InstallHandler\ProductHandler</item>
             </argument>
         </arguments>
     </type>

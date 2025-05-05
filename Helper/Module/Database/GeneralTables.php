@@ -27,6 +27,7 @@ class GeneralTables
             \M2E\Core\Helper\Module\Database\Tables::TABLE_NAME_SETUP => \M2E\Core\Model\ResourceModel\Setup::class,
             \M2E\Core\Helper\Module\Database\Tables::TABLE_NAME_CONFIG => \M2E\Core\Model\ResourceModel\Config::class,
             \M2E\Core\Helper\Module\Database\Tables::TABLE_NAME_REGISTRY => \M2E\Core\Model\ResourceModel\Registry::class,
+            \M2E\Core\Helper\Module\Database\Tables::TABLE_NAME_ATTRIBUTE_MAPPING => \M2E\Core\Model\ResourceModel\AttributeMapping\Pair::class,
         ];
     }
 
@@ -43,6 +44,7 @@ class GeneralTables
             \M2E\Core\Helper\Module\Database\Tables::TABLE_NAME_SETUP => \M2E\Core\Model\Setup::class,
             \M2E\Core\Helper\Module\Database\Tables::TABLE_NAME_CONFIG => \M2E\Core\Model\Config::class,
             \M2E\Core\Helper\Module\Database\Tables::TABLE_NAME_REGISTRY => \M2E\Core\Model\Registry::class,
+            \M2E\Core\Helper\Module\Database\Tables::TABLE_NAME_ATTRIBUTE_MAPPING => \M2E\Core\Model\AttributeMapping\Pair::class,
         ];
     }
 }

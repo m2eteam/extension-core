@@ -12,6 +12,7 @@ class TableModelFactory
     private \M2E\Core\Model\ResourceModel\Setup\CollectionFactory $setupCollectionFactory;
     private \M2E\Core\Model\ResourceModel\Config\CollectionFactory $configCollectionFactory;
     private \M2E\Core\Model\ResourceModel\Registry\CollectionFactory $registryCollectionFactory;
+    private \M2E\Core\Model\ResourceModel\AttributeMapping\Pair\CollectionFactory $attributeMappingCollectionFactory;
     private \M2E\Core\Model\ControlPanel\DatabaseRegistryCollection $databaseRegistryCollection;
     private \Magento\Framework\App\RequestInterface $request;
     private \M2E\Core\Model\ControlPanel\CurrentExtensionResolver $currentExtensionResolver;
@@ -22,6 +23,7 @@ class TableModelFactory
         \M2E\Core\Model\ResourceModel\Setup\CollectionFactory $setupCollectionFactory,
         \M2E\Core\Model\ResourceModel\Config\CollectionFactory $configCollectionFactory,
         \M2E\Core\Model\ResourceModel\Registry\CollectionFactory $registryCollectionFactory,
+        \M2E\Core\Model\ResourceModel\AttributeMapping\Pair\CollectionFactory $attributeMappingCollectionFactory,
         \Magento\Framework\ObjectManagerInterface $objectManager,
         \Magento\Framework\App\RequestInterface $request
     ) {
@@ -29,6 +31,7 @@ class TableModelFactory
         $this->setupCollectionFactory = $setupCollectionFactory;
         $this->configCollectionFactory = $configCollectionFactory;
         $this->registryCollectionFactory = $registryCollectionFactory;
+        $this->attributeMappingCollectionFactory = $attributeMappingCollectionFactory;
         $this->databaseRegistryCollection = $databaseRegistryCollection;
         $this->request = $request;
         $this->currentExtensionResolver = $currentExtensionResolver;
@@ -94,6 +97,7 @@ class TableModelFactory
             CoreTables::TABLE_NAME_SETUP => $this->getSetupCollection($extension),
             CoreTables::TABLE_NAME_CONFIG => $this->getConfigCollection($extension),
             CoreTables::TABLE_NAME_REGISTRY => $this->getRegistryCollection($extension),
+            CoreTables::TABLE_NAME_ATTRIBUTE_MAPPING => $this->getAttributeMappingCollection($extension),
         ];
 
         return $list[$tableName];
@@ -136,6 +140,16 @@ class TableModelFactory
         return $this->registryCollectionFactory->create()
             ->addFieldToFilter(
                 \M2E\Core\Model\ResourceModel\Registry::COLUMN_EXTENSION_NAME,
+                ['eq' => $extension->getIdentifier()]
+            );
+    }
+
+    private function getAttributeMappingCollection(
+        \M2E\Core\Model\ControlPanel\ExtensionInterface $extension
+    ): \M2E\Core\Model\ResourceModel\AttributeMapping\Pair\Collection {
+        return $this->attributeMappingCollectionFactory->create()
+            ->addFieldToFilter(
+                \M2E\Core\Model\ResourceModel\AttributeMapping\Pair::COLUMN_EXTENSION_NAME,
                 ['eq' => $extension->getIdentifier()]
             );
     }

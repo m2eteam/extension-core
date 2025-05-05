@@ -12,6 +12,8 @@ class Tables
 
     public const TABLE_NAME_CONFIG = self::PREFIX . 'config';
     public const TABLE_NAME_REGISTRY = self::PREFIX . 'registry';
+    public const TABLE_NAME_ATTRIBUTE_MAPPING = self::PREFIX . 'attribute_mapping';
+
     private \Magento\Framework\App\ResourceConnection $resourceConnection;
     /** @var \M2E\Core\Helper\Module\Database\Structure */
     private Structure $databaseHelper;
@@ -86,6 +88,7 @@ class Tables
             self::TABLE_NAME_SETUP => \M2E\Core\Model\ResourceModel\Setup::class,
             self::TABLE_NAME_CONFIG => \M2E\Core\Model\ResourceModel\Config::class,
             self::TABLE_NAME_REGISTRY => \M2E\Core\Model\ResourceModel\Registry::class,
+            self::TABLE_NAME_ATTRIBUTE_MAPPING => \M2E\Core\Model\ResourceModel\AttributeMapping\Pair::class,
         ];
     }
 
@@ -102,6 +105,7 @@ class Tables
             self::TABLE_NAME_SETUP => \M2E\Core\Model\Setup::class,
             self::TABLE_NAME_CONFIG => \M2E\Core\Model\Config::class,
             self::TABLE_NAME_REGISTRY => \M2E\Core\Model\Registry::class,
+            self::TABLE_NAME_ATTRIBUTE_MAPPING => \M2E\Core\Model\AttributeMapping\Pair::class,
         ];
     }
 
