@@ -26,5 +26,5 @@ $dropdownClassHtml = $block->hasMore() ? ' class="smart-title-active-item"' : ''
                 </span>
     <?php } ?>
 
-    <?= $block->getChildHtml() ?>
+    <?= /* @noEscape */ $block->getChildHtml() ?>
 </div>

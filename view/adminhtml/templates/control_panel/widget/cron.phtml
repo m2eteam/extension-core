@@ -4,7 +4,7 @@
 ?>
 <div class="fieldset-wrapper" id="magento_block_control_panel_info_cron">
     <div class="fieldset-wrapper-title admin__fieldset-wrapper-title">
-        <h4><?= $block->getWidgetTitle(); ?></h4>
+        <h4><?= /* @noEscape */ $block->getWidgetTitle(); ?></h4>
     </div>
     <div class="fieldset-wrapper-content admin__fieldset-wrapper-content">
         <div class="hor-scroll">
@@ -15,7 +15,7 @@
                         <label>Type: </label>
                     </td>
                     <td class="value">
-                        <?= $block->getRunnerType() ?>
+                        <?= /* @noEscape */ $block->getRunnerType() ?>
                     </td>
                 </tr>
 
@@ -26,7 +26,7 @@
                             <label>Service Auth Key: </label>
                         </td>
                         <td class="value">
-                            <?= $block->getServiceAuthKey(); ?>
+                            <?= /* @noEscape */ $block->getServiceAuthKey(); ?>
                         </td>
                     </tr>
                 <?php endif; ?>
@@ -42,9 +42,9 @@
                     }
                     ?>
                     <td class="value">
-                        <span<?= $style ?>><?= $block->getCronLastRunTime() ?></span>
+                        <span<?= /* @noEscape */ $style ?>><?= /* @noEscape */ $block->getCronLastRunTime() ?></span>
                         <?php
-                        if ($block->isCronNotWorking()) : ?>
+                        if ($block->isCronNotWorking()): ?>
                             &nbsp;<a href="https://help.m2epro.com/support/solutions/articles/9000200879"
                                      target="_blank">[read more]</a>
                         <?php endif; ?>
@@ -52,7 +52,7 @@
                 </tr>
 
                 <?php
-                if ($block->isControllerCronDisabled()) : ?>
+                if ($block->isControllerCronDisabled()): ?>
                     <tr>
                         <td class="label">
                             <label>Service Controller Cron State: </label>
@@ -65,7 +65,7 @@
                 endif; ?>
 
                 <?php
-                if ($block->isPubCronDisabled()) : ?>
+                if ($block->isPubCronDisabled()): ?>
                     <tr>
                         <td class="label">
                             <label>Service Pub Cron State: </label>
@@ -78,7 +78,7 @@
                 endif; ?>
 
                 <?php
-                if ($block->isMagentoCronDisabled()) : ?>
+                if ($block->isMagentoCronDisabled()): ?>
                     <tr>
                         <td class="label">
                             <label>Magento Cron State: </label>

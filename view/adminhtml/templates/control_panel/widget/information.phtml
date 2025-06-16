@@ -23,73 +23,73 @@ $module = $block->getModule();
 
 <div class="fieldset-wrapper" id="magento_block_control_panel_info_module">
     <div class="fieldset-wrapper-title admin__fieldset-wrapper-title">
-        <h4><?= $block->getWidgetTitle(); ?></h4>
+        <h4><?= /* @noEscape */ $block->getWidgetTitle(); ?></h4>
     </div>
     <div class="fieldset-wrapper-content admin__fieldset-wrapper-content">
         <div class="hor-scroll">
             <table class="form-list" cellspacing="0" cellpadding="0">
                 <tr>
                     <td class="label">
-                        <label><?= __('System | Current Time'); ?>: </label>
+                        <label><?= /* @noEscape */ __('System | Current Time'); ?>: </label>
                     </td>
                     <td class="value">
-                        <?= $block->getSystemName() . ' | ' . $block->getSystemTime(); ?>
+                        <?= /* @noEscape */ $block->getSystemName() . ' | ' . $block->getSystemTime(); ?>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="label">
-                        <label><?= __('Magento'); ?>: </label>
+                        <label><?= /* @noEscape */ __('Magento'); ?>: </label>
                     </td>
                     <td class="value">
-                        <?= __(ucwords($magentoHelper->getEditionName()))
+                        <?= /* @noEscape */ __(ucwords($magentoHelper->getEditionName()))
                         . ' (' . $magentoHelper->getVersion() . ')'; ?>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="label">
-                        <label><?= __('Module [Public]'); ?>: </label>
+                        <label><?= /* @noEscape */ __('Module [Public]'); ?>: </label>
                     </td>
                     <td class="value">
-                        <?= $module->getPublicVersion(); ?>
+                        <?= /* @noEscape */ $module->getPublicVersion(); ?>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="label">
-                        <label><?= __('Module [Setup]'); ?>: </label>
+                        <label><?= /* @noEscape */ __('Module [Setup]'); ?>: </label>
                     </td>
                     <td class="value">
-                        <?= $module->getSetupVersion(); ?>
+                        <?= /* @noEscape */ $module->getSetupVersion(); ?>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="label">
-                        <label><?= __('Module Environment'); ?>: </label>
+                        <label><?= /* @noEscape */ __('Module Environment'); ?>: </label>
                     </td>
                     <td class="value">
-                        <?= $block->getEnvironment(); ?>
+                        <?= /* @noEscape */ $block->getEnvironment(); ?>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="label">
-                        <label><?= __('Maintenance'); ?>: </label>
+                        <label><?= /* @noEscape */ __('Maintenance'); ?>: </label>
                     </td>
                     <td class="value">
                         <table class="form-list" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td>
-                        <span style="<?= $block->isModuleMaintenanceMode() ? 'color: green;' : 'color: red;'; ?>">
-                            <?= $block->isModuleMaintenanceMode() ? __('enabled') : __('disabled'); ?>
+                        <span style="<?= /* @noEscape */ $block->isModuleMaintenanceMode() ? 'color: green;' : 'color: red;'; ?>">
+                            <?= /* @noEscape */ $block->isModuleMaintenanceMode() ? __('enabled') : __('disabled'); ?>
                         </span>
                                 </td>
                                 <td>
                         <span style="color: orange;">
-                            &nbsp;<a href="<?= $block->getUrl('*/controlPanel_inspection/changeMaintenanceMode') ?>"
-                                     onclick="return confirm('Are you sure?');">[<?= __('change'); ?>]</a>
+                            &nbsp;<a href="<?= /* @noEscape */ $block->getUrl('*/controlPanel_inspection/changeMaintenanceMode') ?>"
+                                     onclick="return confirm('Are you sure?');">[<?= /* @noEscape */ __('change'); ?>]</a>
                         </span>
                                 </td>
                             </tr>
@@ -99,24 +99,23 @@ $module = $block->getModule();
 
                 <tr>
                     <td class="label">
-                        <label><?= __('Core Resource'); ?>: </label>
+                        <label><?= /* @noEscape */ __('Core Resource'); ?>: </label>
                     </td>
                     <td class="value">
                         <table class="form-list" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td>
                         <span <?php if (!$block->isSetupVersionActual()) { echo ' style="color: red;" ';} ?>>
-                            <?= $module->getSchemaVersion() . ' / ' . $module->getDataVersion() ?>
+                            <?= /* @noEscape */ $module->getSchemaVersion() . ' / ' . $module->getDataVersion() ?>
                         </span>
                                 </td>
                                 <td>
                         <span style="color: orange;">
                             &nbsp;<a href="javascript:void(0);"
-                                     onclick="return setupManagementActionHandler.askAdditionalParametersForAction('Repeat upgrade from the following version:', '<?php
-                                     echo $block->getUrl(
+                                     onclick="return setupManagementActionHandler.askAdditionalParametersForAction('Repeat upgrade from the following version:', '<?= /* @noEscape */ $block->getUrl(
                                          '*/controlPanel_inspection/setMagentoCoreSetupValue',
                                          ['_query' => ['version' => '#version#']]
-                                     ) ?>', 'version');">[<?= __('set'); ?>]</a>
+                                     ) ?>', 'version');">[<?= /* @noEscape */ __('set'); ?>]</a>
                         </span>
                                 </td>
                             </tr>
@@ -126,42 +125,42 @@ $module = $block->getModule();
 
                 <tr>
                     <td class="label">
-                        <label><?= __('PHP'); ?>: </label>
+                        <label><?= /* @noEscape */ __('PHP'); ?>: </label>
                     </td>
                     <td class="value">
-                        <?= $block->getPhpVersion(); ?>
+                        <?= /* @noEscape */ $block->getPhpVersion(); ?>
                         <a target="_blank"
-                           href="<?= $block->getUrl('*/controlPanel_inspection/phpInfo') ?>"
+                           href="<?= /* @noEscape */ $block->getUrl('*/controlPanel_inspection/phpInfo') ?>"
                            style="padding-left: 10px;">
-                            <?= __('[info]'); ?>
+                            <?= /* @noEscape */ __('[info]'); ?>
                         </a>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="label">
-                        <label><?= __('Server API'); ?>: </label>
+                        <label><?= /* @noEscape */ __('Server API'); ?>: </label>
                     </td>
                     <td class="value">
-                        <?= $block->getPhpApiName(); ?>
+                        <?= /* @noEscape */ $block->getPhpApiName(); ?>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="label">
-                        <label><?= __('Memory Limit'); ?>: </label>
+                        <label><?= /* @noEscape */ __('Memory Limit'); ?>: </label>
                     </td>
                     <td class="value">
-                        <?= $block->getMemoryLimit() . ' Mb'; ?>
+                        <?= /* @noEscape */ $block->getMemoryLimit() . ' Mb'; ?>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="label">
-                        <label><?= __('Max Execution Time'); ?>: </label>
+                        <label><?= /* @noEscape */ __('Max Execution Time'); ?>: </label>
                     </td>
                     <td class="value">
-                        <?= $block->getMaxExecutionTime() == 0
+                        <?= /* @noEscape */ $block->getMaxExecutionTime() == 0
                             ? __('Unlimited')
                             : $block->getMaxExecutionTime() . ' sec'; ?>
                     </td>
@@ -169,19 +168,19 @@ $module = $block->getModule();
 
                 <tr>
                     <td class="label">
-                        <label><?= __('MySQL'); ?>: </label>
+                        <label><?= /* @noEscape */ __('MySQL'); ?>: </label>
                     </td>
                     <td class="value">
-                        <?= $block->getMysqlVersion(); ?>
+                        <?= /* @noEscape */ $block->getMysqlVersion(); ?>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="label">
-                        <label><?= __('MySQL Database | Tables Prefix'); ?>: </label>
+                        <label><?= /* @noEscape */ __('MySQL Database | Tables Prefix'); ?>: </label>
                     </td>
                     <td class="value">
-                        <?= $magentoHelper->getDatabaseName() . ' | ' . $block->getDatabaseTablesPrefix(); ?>
+                        <?= /* @noEscape */ $magentoHelper->getDatabaseName() . ' | ' . $block->getDatabaseTablesPrefix(); ?>
                     </td>
                 </tr>
             </table>

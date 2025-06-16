@@ -27,11 +27,9 @@ abstract class AbstractController extends Action
         parent::__construct($context);
     }
 
-    protected function isAjax(\Magento\Framework\App\RequestInterface $request = null)
+    protected function isAjax(): bool
     {
-        if ($request === null) {
-            $request = $this->getRequest();
-        }
+        $request = $this->getRequest();
 
         return $request->isXmlHttpRequest() || $request->getParam('isAjax');
     }
@@ -47,7 +45,7 @@ abstract class AbstractController extends Action
         return $this->getResultPage()->getLayout();
     }
 
-    protected function initEmptyLayout()
+    protected function initEmptyLayout(): void
     {
         /** @psalm-suppress RedundantPropertyInitializationCheck */
         if (isset($this->emptyLayout)) {
@@ -116,7 +114,7 @@ abstract class AbstractController extends Action
         $this->rawResult = $this->resultRawFactory->create();
     }
 
-    protected function setAjaxContent($blockData, $appendGeneralBlock = true)
+    protected function setAjaxContent($blockData): void
     {
         if ($blockData instanceof \Magento\Framework\View\Element\AbstractBlock) {
             $blockData = $blockData->toHtml();

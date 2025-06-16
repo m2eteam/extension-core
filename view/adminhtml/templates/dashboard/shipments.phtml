@@ -1,0 +1,24 @@
+<?php
+/** @var \M2E\Core\Block\Adminhtml\Dashboard\Shipments $block */
+$dataProvider = $block->getDataProvider();
+$infoProvider = $block->getInfoProvider();
+?>
+
+<div class="cards">
+    <a href="<?= /* @noEscape */ $infoProvider->getUrlForLateShipments() ?>" target="_blank" class="card-item">
+        <h4><?= /* @noEscape */ __('Late Shipment') ?></h4>
+        <p><?= /* @noEscape */ $dataProvider->getCountOfLateShipments() ?></p>
+    </a>
+    <a href="<?= /* @noEscape */ $infoProvider->getUrlForShipByToday() ?>" target="_blank" class="card-item">
+        <h4><?= /* @noEscape */ __('Ship by Today') ?></h4>
+        <p><?= /* @noEscape */ $dataProvider->getCountOfShipByToday() ?></p>
+    </a>
+    <a href="<?= /* @noEscape */ $infoProvider->getUrlForShipByTomorrow() ?>" target="_blank" class="card-item">
+        <h4><?= /* @noEscape */ __('Ship by Tomorrow') ?></h4>
+        <p><?= /* @noEscape */ $dataProvider->getCountOfShipByTomorrow() ?></p>
+    </a>
+    <a href="<?= /* @noEscape */ $infoProvider->getUrlForTwoAndMoreDays() ?>" target="_blank" class="card-item">
+        <h4><?= /* @noEscape */ __('Ship by 2+ Days') ?></h4>
+        <p><?= /* @noEscape */ $dataProvider->getCountOfShipForTwoAndMoreDays() ?></p>
+    </a>
+</div>

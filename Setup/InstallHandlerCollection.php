@@ -6,5 +6,4 @@ namespace M2E\Core\Setup;
 
 class InstallHandlerCollection extends \M2E\Core\Model\Setup\AbstractInstallHandlerCollection
 {
-
 }

@@ -1,0 +1,25 @@
+<?php /** @var \M2E\Core\Block\Adminhtml\Dashboard\Dashboard $block */ ?>
+<div class="row">
+    <div class="col-m-3 right-border-line">
+        <div class="shipments-block">
+            <h2><?= /* @noEscape */__('Shipments') ?></h2>
+            <?= /* @noEscape */ $block->getChildHtml('dashboard_shipments') ?>
+        </div>
+        <div class="errors-block">
+            <h2><?= /* @noEscape */ __('Errors') ?></h2>
+            <?= /* @noEscape */ $block->getChildHtml('dashboard_errors') ?>
+        </div>
+    </div>
+    <div class="col-m-6 sales-block">
+        <h2><?= /* @noEscape */ __('Sales') ?></h2>
+        <?= /* @noEscape */ $block->getChildHtml('dashboard_sales') ?>
+    </div>
+    <div class="col-m-3">
+        <h2><?= /* @noEscape */ __('Products') ?></h2>
+        <?= /* @noEscape */ $block->getChildHtml('dashboard_products') ?>
+    </div>
+    <div class="col-m-9 listing-product-issues-block">
+        <h2><?= /* @noEscape */ __('Top 5 Issues') ?></h2>
+        <?= /* @noEscape */ $block->getChildHtml('dashboard_products_issues') ?>
+    </div>
+</div>

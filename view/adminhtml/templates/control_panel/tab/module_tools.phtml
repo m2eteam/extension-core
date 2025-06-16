@@ -1,7 +1,5 @@
 <?php
 /** @var \M2E\Core\Block\Adminhtml\ControlPanel\Tab\ModuleTools $block */
-
-// @codingStandardsIgnoreFile
 ?>
 <script>
     function SetupManagementActionHandler() {
@@ -24,7 +22,7 @@
             </div>
         </div>
         <div class="side-col">
-            <?= $block->getChildHtml('tabs'); ?>
+            <?= /* @noEscape */ $block->getChildHtml('tabs'); ?>
         </div>
     </div>
 </div>

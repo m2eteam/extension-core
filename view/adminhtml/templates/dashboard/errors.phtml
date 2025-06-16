@@ -1,0 +1,59 @@
+<?php
+/** @var \M2E\Core\Block\Adminhtml\Dashboard\Errors $block */
+$dataProvider = $block->getDataProvider();
+$infoProvider = $block->getInfoProvider();
+?>
+
+<div class="cards">
+    <?php $urlForToday = $infoProvider->getUrlForToday(); ?>
+    <?php if ($urlForToday): ?>
+        <a href="<?= /* @noEscape */ $urlForToday ?>" target="_blank" class="card-item">
+            <h4><?= /* @noEscape */ __('Today') ?></h4>
+            <p><?= /* @noEscape */ $dataProvider->getCountErrorsForToday() ?></p>
+        </a>
+    <?php else: ?>
+        <div class="card-item">
+            <h4><?= /* @noEscape */ __('Today') ?></h4>
+            <p><?= /* @noEscape */ $dataProvider->getCountErrorsForToday() ?></p>
+        </div>
+    <?php endif; ?>
+
+    <?php $urlForYesterday = $infoProvider->getUrlForYesterday(); ?>
+    <?php if ($urlForYesterday): ?>
+        <a href="<?= /* @noEscape */ $urlForYesterday ?>" target="_blank" class="card-item">
+            <h4><?= /* @noEscape */ __('Yesterday') ?></h4>
+            <p><?= /* @noEscape */ $dataProvider->getCountErrorsForYesterday() ?></p>
+        </a>
+    <?php else: ?>
+        <div class="card-item">
+            <h4><?= /* @noEscape */ __('Yesterday') ?></h4>
+            <p><?= /* @noEscape */ $dataProvider->getCountErrorsForYesterday() ?></p>
+        </div>
+    <?php endif; ?>
+
+    <?php $urlFor2DaysAgo = $infoProvider->getUrlFor2DaysAgo(); ?>
+    <?php if ($urlFor2DaysAgo): ?>
+        <a href="<?= /* @noEscape */ $urlFor2DaysAgo ?>" target="_blank" class="card-item">
+            <h4><?= /* @noEscape */ __('2 days ago') ?></h4>
+            <p><?= /* @noEscape */ $dataProvider->getCountErrorsFor2DaysAgo() ?></p>
+        </a>
+    <?php else: ?>
+        <div class="card-item">
+            <h4><?= /* @noEscape */ __('2 days ago') ?></h4>
+            <p><?= /* @noEscape */ $dataProvider->getCountErrorsFor2DaysAgo() ?></p>
+        </div>
+    <?php endif; ?>
+
+    <?php $urlForTotal = $infoProvider->getUrlForTotal(); ?>
+    <?php if ($urlForTotal): ?>
+        <a href="<?= /* @noEscape */ $urlForTotal ?>" target="_blank" class="card-item">
+            <h4><?= /* @noEscape */ __('Total') ?></h4>
+            <p><?= /* @noEscape */ $dataProvider->getTotalErrorsCount() ?></p>
+        </a>
+    <?php else: ?>
+        <div class="card-item">
+            <h4><?= /* @noEscape */ __('Total') ?></h4>
+            <p><?= /* @noEscape */ $dataProvider->getTotalErrorsCount() ?></p>
+        </div>
+    <?php endif; ?>
+</div>

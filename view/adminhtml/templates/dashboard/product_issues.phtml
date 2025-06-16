@@ -1,0 +1,34 @@
+<?php /** @var \M2E\Core\Block\Adminhtml\Dashboard\ProductIssues $block */ ?>
+
+<?php if ($notificationMessage = $block->getNotificationMessage()): ?>
+    <p><?= /* @noEscape */ $notificationMessage ?></p>
+<?php endif; ?>
+
+<?php if ($block->isIssuesTableVisible()): ?>
+    <table class="admin__table-primary" id="m2e_dashboard_listing_product_issues">
+        <thead>
+            <tr>
+                <th class="data-grid-th"><span><?= /* @noEscape */ __('Issues') ?></span></th>
+                <th class="data-grid-th issues-total"><span><?= /* @noEscape */ __('Items') ?></span></th>
+                <th class="data-grid-th issues-impact-rate"><span><?= /* @noEscape */ __('Impact Rate') ?></span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($block->getIssues() as $issue): ?>
+                <tr title="<?= /* @noEscape */ $issue['url'] ?>" data-url="<?= /* @noEscape */ $issue['url'] ?>" class="issues-row issues-cursor">
+                    <td class="issues-text"><?= /* @noEscape */ $issue['text'] ?></td>
+                    <td class="issues-total"><?= /* @noEscape */ $issue['total'] ?></td>
+                    <td class="issues-impact-rate"><?= /* @noEscape */ $issue['impact_rate'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <?php if ($viewMoreUrl = $block->getInfoProvider()->getItemsByIssueViewUrl()): ?>
+        <a href="<?= /* @noEscape */ $viewMoreUrl ?>" target="_blank" class="action-default scalable action-primary issues-view-more-btn">
+            <span><?= /* @noEscape */ __('View more') ?></span>
+        </a>
+
+    <?php endif; ?>
+
+<?php endif; ?>

@@ -9,27 +9,27 @@ $clientHelper = $block->getClientHelper();
 ?>
 <div class="fieldset-wrapper" id="magento_block_control_panel_info_location">
     <div class="fieldset-wrapper-title admin__fieldset-wrapper-title">
-        <h4><?= $block->getWidgetTitle(); ?></h4>
+        <h4><?= /* @noEscape */ $block->getWidgetTitle(); ?></h4>
     </div>
     <div class="fieldset-wrapper-content admin__fieldset-wrapper-content">
         <div class="hor-scroll">
             <table class="form-list" cellspacing="0" cellpadding="0">
                 <tr>
                     <td class="label">
-                        <label><?= __('Extension Key'); ?>: </label>
+                        <label><?= /* @noEscape */ __('Extension Key'); ?>: </label>
                     </td>
                     <td class="value">
-                        <?= $escaper->escapeHtml($block->getLicense()->getKey()); ?>
+                        <?= /* @noEscape */ $escaper->escapeHtml($block->getLicense()->getKey()); ?>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="label">
-                        <label><?= __('Domain [valid | real]'); ?>: </label>
+                        <label><?= /* @noEscape */ __('Domain [valid | real]'); ?>: </label>
                     </td>
                     <td class="value">
-                        <span <?= $domainIdentifier->isValid() ? '' : 'style="color:red;"' ?>>
-                            <?= $escaper->escapeHtml(
+                        <span <?= /* @noEscape */ $domainIdentifier->isValid() ? '' : 'style="color:red;"' ?>>
+                            <?= /* @noEscape */ $escaper->escapeHtml(
                                 $domainIdentifier->getValidValue()
                                 . ' | '
                                 . $clientHelper->getDomain()); ?>
@@ -39,11 +39,11 @@ $clientHelper = $block->getClientHelper();
 
                 <tr>
                     <td class="label">
-                        <label><?= __('IP [valid | real]'); ?>: </label>
+                        <label><?= /* @noEscape */ __('IP [valid | real]'); ?>: </label>
                     </td>
                     <td class="value">
-                        <span <?= $ipIdentifier->isValid() ? '' : 'style="color:red;"' ?>>
-                            <?= $escaper->escapeHtml($ipIdentifier->getValidValue()
+                        <span <?= /* @noEscape */ $ipIdentifier->isValid() ? '' : 'style="color:red;"' ?>>
+                            <?= /* @noEscape */ $escaper->escapeHtml($ipIdentifier->getValidValue()
                                 . ' | '
                                 . $clientHelper->getIp()); ?>
                         </span>

@@ -1,8 +1,6 @@
 <?php
 /** @var $block \M2E\Core\Block\Adminhtml\ControlPanel\Tab\Inspection */
-
-// @codingStandardsIgnoreFile
 ?>
 <div>
-    <?= $block->getChildHtml('inspections'); ?>
+    <?= /* @noEscape */ $block->getChildHtml('inspections'); ?>
 </div>

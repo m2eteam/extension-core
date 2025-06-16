@@ -46,6 +46,10 @@ class UpgradeCollection extends \M2E\Core\Model\Setup\AbstractUpgradeCollection
                 'to' => '1.5.0',
                 'upgrade' => \M2E\Core\Setup\Upgrade\v1_5_0\Config::class,
             ],
+            '1.5.0' => [
+                'to' => '1.6.0',
+                'upgrade' => null,
+            ],
         ];
     }
 }
