@@ -50,6 +50,10 @@ class UpgradeCollection extends \M2E\Core\Model\Setup\AbstractUpgradeCollection
                 'to' => '1.6.0',
                 'upgrade' => null,
             ],
+            '1.6.0' => [
+                'to' => '1.6.1',
+                'upgrade' => null,
+            ],
         ];
     }
 }

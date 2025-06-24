@@ -28,7 +28,7 @@ class InstallerFactory
         \M2E\Core\Model\Setup\AbstractInstallHandlerCollection $installHandlersCollection,
         \M2E\Core\Model\Setup\InstallTablesListResolverInterface $tablesList,
         \Magento\Framework\Setup\SetupInterface $setup,
-        \M2E\Core\Model\Module\MaintenanceInterface $maintenance = null
+        ?\M2E\Core\Model\Module\MaintenanceInterface $maintenance = null
     ): Installer {
         if ($maintenance === null) {
             $maintenance = new \M2E\Core\Model\Module\Maintenance\Stub();

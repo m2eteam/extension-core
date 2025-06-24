@@ -10,7 +10,7 @@ class Item
     private string $title;
     private ?string $code;
 
-    public function __construct(int $id, string $title, string $code = null)
+    public function __construct(int $id, string $title, ?string $code = null)
     {
         $this->id = $id;
         $this->title = $title;

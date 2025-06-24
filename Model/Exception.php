@@ -12,7 +12,7 @@ class Exception extends \Exception
         string $message,
         array $additionalData = [],
         int $code = 0,
-        \Throwable $previous = null
+        ?\Throwable $previous = null
     ) {
         $this->additionalData = $additionalData;
 
