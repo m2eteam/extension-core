@@ -15,10 +15,9 @@ class FiltersWithAppliedFilters extends \Magento\Ui\Component\Filters
         \Magento\Framework\Api\FilterBuilder $filterBuilder,
         \M2E\Core\Ui\AppliedFilters\Manager $appliedFiltersManager,
         array $components = [],
-        array $data = [],
-        ?\Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate = null
+        array $data = []
     ) {
-        parent::__construct($context, $uiComponentFactory, $components, $data, $localeDate);
+        parent::__construct($context, $uiComponentFactory, $components, $data);
         $this->filterBuilder = $filterBuilder;
         $this->appliedFiltersManager = $appliedFiltersManager;
     }
