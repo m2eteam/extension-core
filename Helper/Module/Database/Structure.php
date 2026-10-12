@@ -172,11 +172,14 @@ class Structure
 
     public function getTableNameWithoutPrefix(string $tableName): string
     {
-        return str_replace(
-            $this->magentoHelper->getDatabaseTablesPrefix(),
-            '',
-            $this->getTableNameWithPrefix($tableName)
-        );
+        $tableName = $this->getTableNameWithPrefix($tableName);
+
+        $prefix = $this->magentoHelper->getDatabaseTablesPrefix();
+        if (substr($tableName, 0, strlen($prefix)) !== $prefix) {
+            return $tableName;
+        }
+
+        return substr($tableName, strlen($prefix));
     }
 
     // ----------------------------------------

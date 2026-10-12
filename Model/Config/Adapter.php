@@ -9,6 +9,8 @@ class Adapter
     private const CACHE_KEY = 'config_data';
     private const CACHE_LIFETIME_ONE_HOUR = 3600;
 
+    private array $cachedData;
+
     private \M2E\Core\Model\Cache\Adapter $cache;
     private Repository $repository;
     private string $extensionName;
@@ -82,7 +84,20 @@ class Adapter
 
     private function getCacheData()
     {
-        return $this->cache->get(self::CACHE_KEY);
+        /** @psalm-suppress RedundantPropertyInitializationCheck */
+        if (isset($this->cachedData)) {
+            return $this->cachedData;
+        }
+
+        $data = $this->cache->get(self::CACHE_KEY);
+        if (
+            !empty($data)
+            && is_array($data)
+        ) {
+            $this->cachedData = $data;
+        }
+
+        return $data;
     }
 
     private function setCacheData(array $data): void
@@ -92,6 +107,8 @@ class Adapter
 
     private function removeCacheData(): void
     {
+        unset($this->cachedData);
+
         $this->cache->remove(self::CACHE_KEY);
     }
 
